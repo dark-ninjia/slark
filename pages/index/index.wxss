@@ -16,6 +16,36 @@
   color: #aaa;
 }
 
-.usermotto {
-  margin-top: 200px;
+.extra-info {
+  margin-top: 60rpx;
+}
+
+.userinfo-city {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-country {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-gender {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-language {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-province {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
 }
