@@ -1,0 +1,8 @@
+<template name="videoItem">
+  <view class="video-desc">{{content}}</view>
+  <video id="{{'video' + id}}" class="video" src="{{src}}" controls objectFit="fill"></video>
+  <view class="video-opt">
+    <view catchtap="videoLike" data-video-id="{{id}}"><text>Like</text></view>
+    <view catchtap="videoShare" data-video-id="{{id}}"><text>Share</text></view>
+  </view>
+</template>

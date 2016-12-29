@@ -1,9 +1,25 @@
 {
   "pages":[
+    "pages/galary/galary",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/galary/galary"
+    "pages/logs/logs"
   ],
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "pages/galary/galary",
+      "text": "Home"
+    }, {
+      "pagePath": "pages/index/index",
+      "text": "Collection"
+    }, {
+      "pagePath": "pages/index/index",
+      "text": "Setting"
+    }]
+  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#000",

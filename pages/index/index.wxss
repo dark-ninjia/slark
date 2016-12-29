@@ -1,4 +1,7 @@
 /**index.wxss**/
+.container {
+  justify-content: center;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -18,6 +21,9 @@
 
 .extra-info {
   margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  padding-left: 35%;
 }
 
 .userinfo-city {
