@@ -26,6 +26,13 @@ Page({
       }
     })
   },
+  onShareAppMessage: function () {
+    return {
+      title: '微信小程序',
+      desc: '热门视频推荐',
+      path: 'pages/galary/galary'
+    }
+  },
   videoLike: function(event) {
     console.log(event)
     console.log('video ' + event.currentTarget.dataset.videoId + ' liked')
