@@ -1,4 +1,7 @@
 /**index.wxss**/
+.container {
+  justify-content: center;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -16,6 +19,39 @@
   color: #aaa;
 }
 
-.usermotto {
-  margin-top: 200px;
+.extra-info {
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  padding-left: 35%;
+}
+
+.userinfo-city {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-country {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-gender {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-language {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
+}
+
+.userinfo-province {
+  line-height: 60rpx;
+  font-size: 36rpx;
+  display: block;
 }

@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "热门视频推荐",
+    "window":{
+        "backgroundColor":"#ccc"
+    },
+    "enablePullDownRefresh": true
+}

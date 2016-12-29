@@ -1,0 +1,8 @@
+<import src="../common/video-list.wxml" />
+<view class="video-list">
+    <block wx:key="id" wx:for="{{videoList}}">
+        <view class="video-item" >
+            <template is="videoItem" data="{{...item}}" />
+        </view>
+    </block>
+</view>

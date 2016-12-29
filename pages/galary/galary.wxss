@@ -1,0 +1,2 @@
+/* pages/galary/galary.wxss */
+@import '../common/video-list.wxss';
