@@ -2,11 +2,13 @@
     margin: 10rpx 0;
 }
 .video-item {
-    padding: 10rpx;
-    margin: 15rpx 10rpx;
+    padding: 10rpx 0;
+    margin: 15rpx 0;
     background-color: #fff;    
 }
 .video-desc {
+    margin: 0 15rpx;
+    font-size: 32rpx;
 }
 .video {
     width: 100%;
@@ -15,4 +17,19 @@
 .video-opt {
     display: flex;
     justify-content: space-between;
+    margin: 0 15rpx;
+    font-size: 32rpx;
+}
+
+.video-opt-star {
+    background-image: url('../common/star-button.png');
+    width: 50rpx;
+    height: 50rpx;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.video-opt-star[data-liked="true"] {
+    background-image: url('../common/star-button-liked.png');
 }

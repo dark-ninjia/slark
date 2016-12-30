@@ -1,30 +1,24 @@
 //galary.js
 //获取应用实例
+
+const util = require('../../utils/util');
+
 var app = getApp()
 Page({
   data: {
     videoList: [],
+    videoListWithLike: [],
   },
   onLoad: function (e) {
     console.log('galary loaded')
   },
   onShow: function() {
-    let videoList = this.getVideoList()
-    this.setData({
-      videoList: videoList
-    })
+    this.getVideoListAll(() => {});
   },
   onPullDownRefresh: function () {
-    console.log('onPullDownRefresh', new Date())
-    let videoList = this.getVideoList(true)
-    let that = this
-    wx.stopPullDownRefresh({
-      complete: function(res) {
-        that.setData({
-          videoList: videoList
-        })
-      }
-    })
+    this.getVideoListAll(() => {
+      wx.stopPullDownRefresh();
+    });
   },
   onShareAppMessage: function () {
     return {
@@ -34,26 +28,46 @@ Page({
     }
   },
   videoLike: function(event) {
-    console.log(event)
-    console.log('video ' + event.currentTarget.dataset.videoId + ' liked')
+    const id = event.currentTarget.dataset.videoId;
+    util.toggleLike(id, undefined, (result) => {
+      const videoListWithLike = this.mapLikeIntoVideoList(this.data.videoList, result);
+      this.setData({
+        videoListWithLike,
+      });
+    });
   },
   videoShare: function(event) {
     console.log(event)
     console.log('video ' + event.currentTarget.dataset.videoId + ' shared')
   },
-  getVideoList: function(flag) {
-    return !flag ? [{
-      id: 1,
-      content: 'video content ...',
-      src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
-    }, {
-      id: 2,
-      content: 'another video content ...',
-      src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
-    }] : [{
-      id: 3,
-      content: 'refresh video content ...',
-      src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
-    }];
+  getVideoList: function(callback) {
+    const vList = app.globalData.videoList.shuffle();
+    callback(vList);
+  },
+  getLikedList: function(callback) {
+    util.getLikedVideoIdList((likedList) => {
+      callback(likedList);
+    });
+  },
+  mapLikeIntoVideoList: function(videoList, likedList) {
+    const videoListWithLike = videoList.map((video) => {
+      return Object.assign({}, video, {
+        liked: likedList.includes(video.id),
+      });
+    });
+    return videoListWithLike;
+  },
+  getVideoListAll: function(callback) {
+    const _this = this;
+    _this.getVideoList((videoList) => {
+      _this.getLikedList((likedList) => {
+        const videoListWithLike = _this.mapLikeIntoVideoList(videoList, likedList);
+        _this.setData({
+          videoList,
+          videoListWithLike,
+        });
+        callback();
+      });
+    });
   }
 })
