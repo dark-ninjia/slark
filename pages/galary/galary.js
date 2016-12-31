@@ -27,6 +27,16 @@ Page({
       path: 'pages/galary/galary'
     }
   },
+  videoPlay: function(event) {
+    const domId = event.currentTarget.id;
+    this.data.videoList.forEach(function(video) {
+      if (`video${video.id}` !== domId) {
+        const cxt = wx.createVideoContext(`video${video.id}`);
+        cxt.pause();
+      }
+    });
+    console.log(domId);
+  },
   videoLike: function(event) {
     const id = event.currentTarget.dataset.videoId;
     util.toggleLike(id, undefined, (result) => {
