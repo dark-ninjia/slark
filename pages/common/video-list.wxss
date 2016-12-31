@@ -22,14 +22,7 @@
 }
 
 .video-opt-star {
-    background-image: url('../common/star-button.png');
+    display: block;
     width: 50rpx;
-    height: 50rpx;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.video-opt-star[data-liked="true"] {
-    background-image: url('../common/star-button-liked.png');
+    height: 43rpx;
 }
