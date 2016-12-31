@@ -1,40 +1,40 @@
-function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
-
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds()
-
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
-
-function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
-}
-
 if (!Array.prototype.shuffle) {
     Array.prototype.shuffle = function() {
-      if (this) {
-        for(var j, x, i = this.length; i; j = parseInt(Math.random() * i), x = this[--i], this[i] = this[j], this[j] = x);
-    };
-    return this;
+        if (this) {
+            for (var j, x, i = this.length; i; j = parseInt(Math.random() * i), x = this[--i], this[i] = this[j], this[j] = x);
+        }
+        return this;
     }
 }
 
-const getLikedVideoIdList = (callback) => {
-  wx.getStorage({
-    key: `likedVideoIdList`,
-    success: (res) => {
-      callback(res.data || []);
-    },
-    fail: () => {
-      callback([]);
-    }
-  });
+const formatTime = function(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+
+
+    return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+};
+
+const formatNumber = function(n) {
+    n = n.toString();
+    return n[1] ? n : '0' + n
+};
+
+const getLikedVideoIdList = function(callback) {
+    wx.getStorage({
+        key: `likedVideoIdList`,
+        success: function(res) {
+            callback(res.data || []);
+        },
+        fail: function() {
+            callback([]);
+        }
+    });
 };
 
 /**
@@ -42,8 +42,8 @@ const getLikedVideoIdList = (callback) => {
  * @param force {Boolean} 喜欢／不喜欢
  * @param callback {Function}
  */
-const toggleLike = (videoId, force, callback) => {
-    getLikedVideoIdList((likedVideoIdList) => {
+const toggleVideoLike = function(videoId, force, callback) {
+    getLikedVideoIdList(function(likedVideoIdList) {
         const hasLiked = likedVideoIdList.includes(videoId);
         let resultLiked = force;
         if (resultLiked === undefined) {
@@ -55,7 +55,7 @@ const toggleLike = (videoId, force, callback) => {
 
         if (hasLiked && !resultLiked) {
             // remove
-            resultList = likedVideoIdList.filter((id) => {
+            resultList = likedVideoIdList.filter(function(id) {
                 return id !== videoId;
             });
             result = true;
@@ -69,10 +69,10 @@ const toggleLike = (videoId, force, callback) => {
             wx.setStorage({
                 key: `likedVideoIdList`,
                 data: resultList,
-                success: () => {
+                success: function() {
                     callback(resultList);
                 },
-                fail: () => {
+                fail: function() {
                     callback(resultList);
                 }
             });
@@ -83,7 +83,7 @@ const toggleLike = (videoId, force, callback) => {
 };
 
 module.exports = {
-  formatTime,
-  toggleLike,
-  getLikedVideoIdList,
-}
+    formatTime,
+    toggleVideoLike,
+    getLikedVideoIdList,
+};
